@@ -433,7 +433,7 @@ function buildSectionTree(sections, documentId) {
     (childrenByParent[p] = childrenByParent[p] || []).push(s);
   }
   for (const pid of Object.keys(childrenByParent)) {
-    childrenByParent[pid].sort((a, b) => (a.order || "").localeCompare(b.order || ""));
+    childrenByParent[pid].sort((a, b) => (a.order || "") < (b.order || "") ? -1 : (a.order || "") > (b.order || "") ? 1 : 0);
   }
 
   const result = [];
@@ -447,7 +447,7 @@ function buildSectionTree(sections, documentId) {
   let roots = childrenByParent[documentId] || [];
   if (!roots.length) {
     roots = sections.filter(s => !byId[s.parent || ""]);
-    roots.sort((a, b) => (a.order || "").localeCompare(b.order || ""));
+    roots.sort((a, b) => (a.order || "") < (b.order || "") ? -1 : (a.order || "") > (b.order || "") ? 1 : 0);
   }
   for (const root of roots) visit(root.id, 0);
   return result;
