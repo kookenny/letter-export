@@ -78,4 +78,10 @@ A `.docx` file with:
 - `pagebreak` is a section type (not a setting) — must be rendered as Word page break
 - Guidance field is `guidances.en` (same as checklist procedures)
 - Visibility conditions follow the same structure as note documents
+- Visibility condition types include `response`, `condition_group`, `organization_type`, and `consolidation`
 - HTML content includes embedded base64 images (firm logos) — represented as placeholders in Word
+- Formula spans (`<span formula="..." class="dynamic-text formula glossary">`) contain just a single space `" "` as visible content — the resolved value comes from `section.attachables`
+- Placeholder spans have nested inner `<span>` elements (display text + caret) — use a DOM parser, not regex
+- Ordered lists are split across multiple `<ol>` elements separated by `<p>` tags; the `start` attribute signals continuation
+- Common list style: `list-style-type:lower-alpha` with `start="1"`
+- Section `order` field uses fractional-index strings — in JavaScript, sort with `<`/`>` NOT `localeCompare` (which is locale-aware and reorders special characters)
