@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Letter Exporter</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="page-container">
+        <header class="page-header">
+            <h1>Letter Exporter</h1>
+            <p>Export letter content from Caseware Cloud SE author templates to Word.</p>
+        </header>
+
+        <main class="card">
+            <h2>Generate Letter</h2>
+
+            <div class="form-group">
+                <label for="cwUrl">Caseware URL</label>
+                <input type="text" id="cwUrl"
+                       placeholder="https://ca.cwcloudpartner.com/ca-develop/e/eng/.../index.jsp#/letter/...">
+                <div class="helper-text" id="parsedInfo">
+                    Paste a Caseware document URL to export a letter (e.g. ...#/letter/&lt;documentId&gt;)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="templateName">Report Name <span style="font-weight:400; color:rgba(0,0,0,0.60)">(optional)</span></label>
+                <input type="text" id="templateName" placeholder="e.g. Review engagement letter">
+            </div>
+
+            <div class="actions">
+                <button id="generateBtn" class="btn-primary">Export Letter</button>
+            </div>
+
+            <div id="status" class="status-area" hidden>
+                <div class="spinner"></div>
+                <span>Exporting letter&hellip; this may take a moment</span>
+            </div>
+
+            <div id="error" class="error-message" hidden></div>
+            <div id="success" class="success-message" hidden></div>
+        </main>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
